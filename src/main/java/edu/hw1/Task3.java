@@ -1,5 +1,7 @@
 package edu.hw1;
 
+import java.util.Arrays;
+
 @SuppressWarnings("HideUtilityClassConstructor")
 public class Task3 {
 
@@ -14,31 +16,11 @@ public class Task3 {
             return false;
         }
 
-        int minArray1 = findMin(array1);
-        int maxArray1 = findMax(array1);
-        int minArray2 = findMin(array2);
-        int maxArray2 = findMax(array2);
+        int maxArray1 = Arrays.stream(array1).max().getAsInt();
+        int minArray1 = Arrays.stream(array1).min().getAsInt();
+        int minArray2 = Arrays.stream(array2).min().getAsInt();
+        int maxArray2 = Arrays.stream(array2).max().getAsInt();
 
         return minArray1 > minArray2 && maxArray1 < maxArray2;
-    }
-
-    private static int findMin(int[] array) {
-        int min = array[0];
-        int currentMin = min;
-        for (int num : array) {
-            currentMin = num;
-            if (currentMin < min) {
-                min = currentMin;
-            }
-        }
-        return min;
-    }
-
-    private static int findMax(int[] array) {
-        int max = array[0];
-        for (int num : array) {
-            max = Math.max(max, num);
-        }
-        return max;
     }
 }
