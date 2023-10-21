@@ -73,6 +73,12 @@
             <version>${jetbrains-annotations.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>3.12.4</version> <!-- Пожалуйста, проверьте актуальную версию на сайте Mockito -->
+            <scope>test</scope>
+        </dependency>
 
         <!-- Logging -->
         <dependency>
