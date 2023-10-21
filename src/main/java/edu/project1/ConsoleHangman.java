@@ -1,8 +1,8 @@
 package edu.project1;
 
 import java.util.Scanner;
-import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ConsoleHangman {
     private static final int MAX_ATTEMPTS = 5;
