@@ -26,7 +26,7 @@ sealed interface GuessResult {
 
         @Override
         public String message() {
-            return "You won! Congratulations! Number of attempts: " + (attempts - 1);
+            return "You won! Congratulations! Number of losing attempts: " + (attempts - 1);
         }
     }
 

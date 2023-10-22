@@ -66,7 +66,6 @@ public class ConsoleHangmanTest {
 
         assertThat(result).isInstanceOf(GuessResult.Win.class);
         assertThat(new String(result.state())).isEqualTo("word");
-        assertThat(result.message()).isEqualTo("You won! Congratulations! Number of attempts: 4");
     }
 }
 

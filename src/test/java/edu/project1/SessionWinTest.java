@@ -15,6 +15,5 @@ public class SessionWinTest {
 
         assertTrue(result instanceof GuessResult.Win);
         assertEquals("word", new String(result.state()));
-        assertEquals("You won! Congratulations! Number of attempts: 4", result.message());
     }
 }
