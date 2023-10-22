@@ -76,7 +76,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>3.12.4</version> <!-- Пожалуйста, проверьте актуальную версию на сайте Mockito -->
+            <version>5.1.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -89,7 +89,6 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
         </dependency>
-
 
         <dependency>
             <groupId>org.assertj</groupId>
@@ -106,6 +105,12 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
             <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
