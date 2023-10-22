@@ -1,5 +1,6 @@
 package edu.project1;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.*;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -50,4 +51,23 @@ public class ConsoleHangmanTest {
 
         System.setIn(originalSystemIn);
     }
+
+    @Test
+    @DisplayName("Победа при угадывании всех букв")
+    void winGameWhenGuessingAllLetters() {
+        Session session = new Session("word", 5);
+
+        session.guess('w');
+        session.guess('o');
+        session.guess('r');
+        session.guess('d');
+
+        GuessResult result = session.guess('x');
+
+        assertThat(result).isInstanceOf(GuessResult.Win.class);
+        assertThat(new String(result.state())).isEqualTo("word");
+        assertThat(result.message()).isEqualTo("You won! Congratulations! Number of attempts: 4");
+    }
 }
+
+

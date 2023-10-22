@@ -109,6 +109,13 @@
             <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.21.0</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -116,6 +123,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -141,9 +152,7 @@
                     <configuration>
                         <release>${java.release}</release>
                         <parameters>true</parameters>
-                        <compilerArgument>
-                            <arg>-Xlint:all</arg>
-                        </compilerArgument>
+                        <compilerArgument>-Xlint:all</compilerArgument>
                     </configuration>
                 </plugin>
                 <plugin>
