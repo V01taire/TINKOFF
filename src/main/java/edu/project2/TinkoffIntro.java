@@ -1,4 +1,4 @@
-package edu.project1.project1;
+package edu.project2;
 
 @SuppressWarnings({"HideUtilityClassConstructor", "RegexpSinglelineJava", "MagicNumber", "LineLength"})
 public class TinkoffIntro {

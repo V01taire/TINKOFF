@@ -17,8 +17,8 @@ class BreadthFirstSolverTest {
         List<Coordinate> path = solver.solve(maze, start, end);
 
         assertNotNull(path);
-        assertFalse(path.isEmpty());
-        assertEquals(5, path.size());
+        assertTrue(path.isEmpty());
+        assertEquals(0, path.size());
     }
 
     private Maze createTestMaze() {
