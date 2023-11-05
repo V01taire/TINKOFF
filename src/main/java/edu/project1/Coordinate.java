@@ -1,3 +1,3 @@
-package edu.project2;
+package edu.project1;
 
 record Coordinate(int row, int col) {}

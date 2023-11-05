@@ -1,53 +1,27 @@
-package edu.project2;
+package edu.project1;
 
-import java.util.List;
-import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-@SuppressWarnings({"MagicNumber", "HideUtilityClassConstructor", "LineLength", "RegexpSinglelineJava"})
-public class Main {
+// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
+// then press Enter. You can now see whitespace characters in your code.
+public final class Main {
+    private final static Logger LOGGER = LogManager.getLogger();
+
+    private Main() {
+    }
+
     public static void main(String[] args) {
+        // Press Alt+Enter with your caret at the highlighted text to see how
+        // IntelliJ IDEA suggests fixing it.
+        LOGGER.info("Hello and welcome!");
 
-        final String LABYRINTH_ICON = "\uD83C\uDF84";
+        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
+        for (int i = 0; i <= 2; i++) {
 
-        Scanner scanner = new Scanner(System.in);
-        Generator generator = null;
-        Solver solver = null;
-
-        TinkoffIntro.generateTinkoffIntro();
-
-        System.out.println("    Выберите алгоритм для генерации лабиринта и поиска пути:");
-        System.out.println("    1) Алгоритм RecursiveBacktracker и DFS");
-        System.out.print("""
-                2) Алгоритм Прима и BFS
-
-                \u001B[3m\u001B[38;2;0;128;0mВАШ ВЫБОР:\u001B[0m \
-            """);
-
-        int choice = scanner.nextInt();
-        switch (choice) {
-            case 1:
-                generator = new RecursiveBacktrackerGenerator();
-                solver = new DepthFirstSolver();
-                break;
-            case 2:
-                generator = new RandomizedPrimGenerator();
-                solver = new BreadthFirstSolver();
-                break;
-            default:
-                System.out.println("    \u001B[3m\u001B[4m\u001B[38;2;255;0;0mНекорректный выбор. Пожалуйста, перезапустите задание и выберите 1 или 2.\u001B[0m");
-                return;
+            // Press Shift+F9 to start debugging your code. We have set one breakpoint
+            // for you, but you can always add more by pressing Ctrl+F8.
+            LOGGER.info("i = {}", i);
         }
-
-        Maze maze = generator.generate(11, 85);
-        List<Coordinate> path = solver.solve(maze,
-            new Coordinate(1, 1),
-            new Coordinate(maze.getHeight() - 2, maze.getWidth() - 2));
-
-        Renderer renderer = new ConsoleRenderer();
-
-        System.out.println("\n" + TinkoffIntro.renderEmptySpace(75) + LABYRINTH_ICON + "\u001B[1mСГЕНЕРИРОВАННЫЙ ЛАБИРИНТ\u001B[0m" + LABYRINTH_ICON + "\n");
-        System.out.println(renderer.render(maze));
-        System.out.println(TinkoffIntro.renderEmptySpace(82) + LABYRINTH_ICON + "\u001B[1mРЕШЕНИЕ\u001B[0m" + LABYRINTH_ICON + "\n");
-        System.out.println(renderer.render(maze, path));
     }
 }

@@ -1,4 +1,4 @@
-package edu.project2;
+package edu.project1;
 
 @SuppressWarnings("RedundantModifier")
 final class Maze {
