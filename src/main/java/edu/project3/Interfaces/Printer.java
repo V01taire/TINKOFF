@@ -1,4 +1,4 @@
-package edu.project3;
+package edu.project3.Interfaces;
 
 public interface Printer {
     void print();

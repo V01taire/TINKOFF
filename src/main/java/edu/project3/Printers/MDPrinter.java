@@ -1,14 +1,14 @@
 package edu.project3.Printers;
 
+import edu.project3.Interfaces.Printer;
+import edu.project3.LogFiles.LogAnalyzerStorage;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
-import edu.project3.LogFiles.LogAnalyzerStorage;
-import edu.project3.Interfaces.Printer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class MD_Printer implements Printer {
+@SuppressWarnings({"MultipleStringLiterals", "LineLength", "MagicNumber"})
+public class MDPrinter implements Printer {
 
     private final static int COUNT_REQUEST = 100;
     private final LogAnalyzerStorage storage;
@@ -17,11 +17,11 @@ public class MD_Printer implements Printer {
     private final static Logger LOGGER = LogManager.getLogger();
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_GREEN = "\u001B[92m";
-    private static final String ANSI_RED= "\u001B[38;5;196m";
+    private static final String ANSI_RED = "\u001B[38;5;196m";
     private static final String ANSI_WHITE = "\u001B[0m";
 
 
-    public MD_Printer(LogAnalyzerStorage storage, LocalDate startDate, LocalDate endDate) {
+    public MDPrinter(LogAnalyzerStorage storage, LocalDate startDate, LocalDate endDate) {
         this.storage = storage;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -54,7 +54,7 @@ public class MD_Printer implements Printer {
             + ANSI_WHITE + " Directory(ies)       "
             + ANSI_GREEN + " | "
             + ANSI_WHITE + storage.getFiles().get(0)
-            + ANSI_GREEN +" |");
+            + ANSI_GREEN + " |");
         for (int i = 1; i < storage.getFiles().size(); i++) {
             LOGGER.info(ANSI_GREEN + "|"
                 + ANSI_WHITE + "|                       | "
@@ -64,7 +64,7 @@ public class MD_Printer implements Printer {
 
     private void printDateInfo() {
         LOGGER.info(ANSI_GREEN + "|"
-            + ANSI_WHITE +" Start Date           "
+            + ANSI_WHITE + " Start Date           "
             + ANSI_GREEN + " | "
             + ANSI_WHITE + formatDate(startDate)
             + ANSI_GREEN + " \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t |");
@@ -126,7 +126,7 @@ public class MD_Printer implements Printer {
         LOGGER.info(ANSI_RED + "☠ Requests from IP Addresses" + ANSI_RESET);
         printTableHeader(ANSI_GREEN + "|          IP           |                                Quantity                                |");
         for (var ip : storage.getAddressCountsSorted()) {
-            if (ip.getValue() <= MD_Printer.COUNT_REQUEST) {
+            if (ip.getValue() <= MDPrinter.COUNT_REQUEST) {
                 break;
             }
             LOGGER.info(ANSI_GREEN + "| "

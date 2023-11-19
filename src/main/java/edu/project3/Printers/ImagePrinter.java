@@ -1,8 +1,9 @@
-package edu.project3;
+package edu.project3.Printers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+@SuppressWarnings({"HideUtilityClassConstructor", "LocalVariableName"})
 public class ImagePrinter {
 
     private static final Logger LOGGER = LogManager.getLogger();

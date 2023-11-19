@@ -1,7 +1,7 @@
 package edu.project3.Parsers;
 
-import edu.project3.LogFiles.LogAnalyzerStorage;
 import edu.project3.Interfaces.Parser;
+import edu.project3.LogFiles.LogAnalyzerStorage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,7 +16,9 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class URL_Parser implements Parser {
+
+@SuppressWarnings("MagicNumber")
+public class URLParser implements Parser {
 
     private final URL url;
     private final LogAnalyzerStorage storage;
@@ -33,7 +35,7 @@ public class URL_Parser implements Parser {
             + "\\s\".*\"\\s\".*\"$"
     );
 
-    public URL_Parser(String urlString, LogAnalyzerStorage storage, LocalDate startDate, LocalDate endDate)
+    public URLParser(String urlString, LogAnalyzerStorage storage, LocalDate startDate, LocalDate endDate)
         throws URISyntaxException, MalformedURLException {
 
         this.url = new URI(urlString).toURL();

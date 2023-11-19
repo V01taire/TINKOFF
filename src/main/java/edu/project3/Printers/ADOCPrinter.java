@@ -1,13 +1,14 @@
 package edu.project3.Printers;
 
+import edu.project3.Interfaces.Printer;
+import edu.project3.LogFiles.LogAnalyzerStorage;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import edu.project3.LogFiles.LogAnalyzerStorage;
-import edu.project3.Interfaces.Printer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ADOC_Printer implements Printer {
+@SuppressWarnings({"MultipleStringLiterals", "LineLength", "MagicNumber"})
+public class ADOCPrinter implements Printer {
 
     private static final int COUNT_REQUEST = 100;
     private final LogAnalyzerStorage storage;
@@ -19,7 +20,7 @@ public class ADOC_Printer implements Printer {
     private static final String ANSI_RED = "\u001B[38;5;196m";
     private static final String ANSI_WHITE = "\u001B[0m";
 
-    public ADOC_Printer(LogAnalyzerStorage storage, LocalDate startDate, LocalDate endDate) {
+    public ADOCPrinter(LogAnalyzerStorage storage, LocalDate startDate, LocalDate endDate) {
         this.storage = storage;
         this.startDate = startDate;
         this.endDate = endDate;

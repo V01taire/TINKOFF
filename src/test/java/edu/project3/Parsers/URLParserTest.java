@@ -7,17 +7,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDate;
 
-public class URL_ParserTest {
+public class URLParserTest {
 
     private static final LocalDate MIN_DATE = LocalDate.MIN;
     private static final LocalDate MAX_DATE = LocalDate.MAX;
 
-    private URL_Parser urlParser;
+    private URLParser urlParser;
     private LogAnalyzerStorage storage;
 
     @BeforeEach
@@ -35,7 +34,7 @@ public class URL_ParserTest {
             // given
             URL url = new URL(
                 "https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/nginx_logs/nginx_logs");
-            urlParser = new URL_Parser(url.toString(), storage, MIN_DATE, MAX_DATE);
+            urlParser = new URLParser(url.toString(), storage, MIN_DATE, MAX_DATE);
 
             // when
             urlParser.readData();
