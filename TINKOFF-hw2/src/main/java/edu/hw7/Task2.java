@@ -1,7 +1,8 @@
-package edu.hw7.Task2;
+package edu.hw7;
 
 import java.util.stream.LongStream;
 
+@SuppressWarnings("HideUtilityClassConstructor")
 public class Task2 {
 
     public static long factorial(int n) {
@@ -10,7 +11,7 @@ public class Task2 {
         }
 
         return LongStream.rangeClosed(1, n)
-            .parallel()  // Используем parallelStream для распараллеливания вычислений
+            .parallel()
             .reduce(1, (a, b) -> a * b);
     }
 }

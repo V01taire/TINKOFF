@@ -1,53 +1,41 @@
-package edu.hw3;
+package edu.hw7;
 
-import edu.hw3.Task2.Task2;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class Task2Test {
+class Task2Test {
 
     @Test
-    @DisplayName("Тест кластеризации строки с одним кластером")
-    void testClusterizeSingleCluster() {
-        // given
-        String input = "((()))";
-        List<String> expectedClusters = List.of("((()))");
-
-        // when
-        List<String> clusters = Task2.clusterize(input);
-
-        // then
-        assertEquals(expectedClusters, clusters);
+    void testFactorialWithPositiveNumber() {
+        int n = 5;
+        long result = Task2.factorial(n);
+        assertEquals(120, result);
     }
 
     @Test
-    @DisplayName("Тест кластеризации строки с несколькими кластерами")
-    void testClusterizeMultipleClusters() {
-        // given
-        String input = "((()))(())()()(()())";
-        List<String> expectedClusters = List.of("((()))", "(())", "()", "()", "(()())");
-
-        // when
-        List<String> clusters = Task2.clusterize(input);
-
-        // then
-        assertEquals(expectedClusters, clusters);
+    void testFactorialWithZero() {
+        int n = 0;
+        long result = Task2.factorial(n);
+        assertEquals(1, result);
     }
 
     @Test
-    @DisplayName("Тест кластеризации строки с вложенными кластерами")
-    void testClusterizeNestedClusters() {
-        // given
-        String input = "((())())(()(()()))";
-        List<String> expectedClusters = List.of("((())())", "(()(()()))");
+    void testFactorialWithNegativeNumber() {
+        int n = -5;
+        assertThrows(IllegalArgumentException.class, () -> Task2.factorial(n));
+    }
 
-        // when
-        List<String> clusters = Task2.clusterize(input);
+    @Test
+    void testFactorialWithLargeNumber() {
+        int n = 20;
 
-        // then
-        assertEquals(expectedClusters, clusters);
+        long result = Task2.factorial(n);
+
+        assertFalse(result < 0, "Expected result to be negative due to long overflow, but it was: " + result);
     }
 }
+
 

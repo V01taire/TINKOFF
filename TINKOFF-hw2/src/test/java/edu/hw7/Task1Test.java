@@ -1,52 +1,62 @@
-package edu.hw3;
-
-import edu.hw3.Task1.Task1;
-import org.junit.jupiter.api.DisplayName;
+package edu.hw7;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
-public class Task1Test {
+import java.util.concurrent.CountDownLatch;
+import java.util.stream.IntStream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class Task1Test {
 
     @Test
-    @DisplayName("Тест шифрования строки с использованием шифра Атбаш")
-    void testAtbashCipher() {
-        // given
-        String originalString = "Any fool can write code that a computer can understand. Good programmers write code that humans can understand. ― Martin Fowler";
-        String expectedCipheredString = "Zmb ullo xzm dirgv xlwv gszg z xlnkfgvi xzm fmwvihgzmw. Tllw kiltiznnvih dirgv xlwv gszg sfnzmh xzm fmwvihgzmw. ― Nzigrm Uldovi";
+    void testCounterIncrement() throws InterruptedException {
+        Task1.counter.set(0);
 
-        // when
-        String cipheredString = Task1.atbashCipher(originalString);
+        Thread[] threads = IntStream.range(0, Task1.THREAD_COUNT)
+            .mapToObj(i -> new Task1.IncrementThread())
+            .toArray(Thread[]::new);
 
-        // then
-        assertEquals(expectedCipheredString, cipheredString);
+        for (Thread thread : threads) {
+            thread.start();
+        }
+
+        for (Thread thread : threads) {
+            thread.join();
+        }
+
+        assertEquals(Task1.counter.get(), Task1.THREAD_COUNT * Task1.INCREMENT_COUNT);
     }
 
     @Test
-    @DisplayName("Тест шифрования строки с использованием шифра Атбаш (с большими буквами)")
-    void testAtbashCipherWithUppercase() {
-        // given
-        String originalString = "Hello World!";
-        String expectedCipheredString = "Svool Dliow!";
+    void testThreadSafety() throws InterruptedException {
+        Task1.counter.set(0);
 
-        // when
-        String cipheredString = Task1.atbashCipher(originalString);
+        int totalIncrements = Task1.THREAD_COUNT * Task1.INCREMENT_COUNT;
+        CountDownLatch latch = new CountDownLatch(Task1.THREAD_COUNT);
 
-        // then
-        assertEquals(expectedCipheredString, cipheredString);
+        for (int i = 0; i < Task1.THREAD_COUNT; i++) {
+            new Thread(() -> {
+                for (int j = 0; j < Task1.INCREMENT_COUNT; j++) {
+                    Task1.counter.incrementAndGet();
+                }
+                latch.countDown();
+            }).start();
+        }
+
+        latch.await();
+        assertEquals(Task1.counter.get(), totalIncrements);
     }
 
     @Test
-    @DisplayName("Тест шифрования строки с не латинскими символами")
-    void testAtbashCipherWithNonLatinCharacters() {
-        // given
-        String originalString = "Hello, world! 123";
-        String expectedCipheredString = "Svool, dliow! 123";
+    void testSingleThreadIncrement() throws InterruptedException {
+        Task1.counter.set(0);
 
-        // when
-        String cipheredString = Task1.atbashCipher(originalString);
+        Task1.IncrementThread incrementThread = new Task1.IncrementThread();
+        incrementThread.start();
+        incrementThread.join();
 
-        // then
-        assertEquals(expectedCipheredString, cipheredString);
+        assertEquals(Task1.counter.get(), Task1.INCREMENT_COUNT);
     }
 }
+
 

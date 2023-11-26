@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class PersonCachingService implements PersonDatabase {
+public class PersonCachingServiceWithReadWriteLock implements PersonDatabaseWithReadWriteLock {
 
     private final List<Person> persons = new ArrayList<>();
     private final ReadWriteLock lock = new ReentrantReadWriteLock();

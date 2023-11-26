@@ -1,23 +1,29 @@
 package edu.hw7.Task4;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 @SuppressWarnings("HideUtilityClassConstructor")
-public class Task4 {
-    private static final String[] THOUSANDS = new String[]{"", "M", "MM", "MMM"};
-    private static final String[] HUNDREDS = new String[]{"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
-    private static final String[] TENS = new String[]{"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
-    private static final String[] ONES = new String[]{"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
-    private static final int[] DIVIDERS = new int[]{1000, 100, 10};
+public class MonteCarloPi {
+    private static final int PI_APPROXIMATION_FACTOR = 4;
 
-    public static String convertToRoman(int number) {
+    public static double calculatePi(int iterations) {
+        int circleCount = 0;
+        int totalCount = 0;
 
-        String romanNumber = "";
+        for (int i = 0; i < iterations; i++) {
+            double x = ThreadLocalRandom.current().nextDouble();
+            double y = ThreadLocalRandom.current().nextDouble();
 
-        romanNumber = romanNumber
-            .concat(THOUSANDS[number / DIVIDERS[0]])
-            .concat(HUNDREDS[(number % DIVIDERS[0]) / DIVIDERS[1]])
-            .concat(TENS[(number % DIVIDERS[1]) / DIVIDERS[2]])
-            .concat(ONES[number % DIVIDERS[2]]);
+            double distance = Math.sqrt(x * x + y * y);
 
-        return romanNumber;
+            if (distance <= 1) {
+                circleCount++;
+            }
+
+            totalCount++;
+        }
+
+        return PI_APPROXIMATION_FACTOR * (double) circleCount / totalCount;
     }
 }
+

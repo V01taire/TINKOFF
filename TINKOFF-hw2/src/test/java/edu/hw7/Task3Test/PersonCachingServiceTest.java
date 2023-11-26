@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -102,7 +103,7 @@ class PersonCachingServiceTest {
     @Test
     void testDeleteNonExistingPerson() {
         PersonCachingService service = new PersonCachingService();
-        assertDoesNotThrow(() -> service.delete(1)); // Deleting a non-existing person should not throw an exception
+        assertDoesNotThrow(() -> service.delete(1));
     }
 }
 
