@@ -1,4 +1,4 @@
-package edu.hw3.Task5;
+package edu.hw7.Task3_5;
 
 class Contact {
     String fullName;

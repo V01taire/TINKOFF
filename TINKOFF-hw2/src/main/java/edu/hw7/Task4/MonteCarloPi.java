@@ -1,4 +1,4 @@
-package edu.hw3.Task4;
+package edu.hw7.Task4;
 
 @SuppressWarnings("HideUtilityClassConstructor")
 public class Task4 {
